@@ -10,14 +10,14 @@ import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 
 
 import './App.css'
-
+import css from './App.module.css';
 
 
 const App = () => {
 
 
   return (
-    <div>
+    <div className={css.container}>
       <Navigation />
       <main>
         <Routes>

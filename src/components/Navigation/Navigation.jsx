@@ -4,21 +4,19 @@ import css from './Navigation.module.css'
 
 
 const Navigation = () => {
-
     const buildLinkClass = ({ isActive }) => {
-        return isActive ? `${css.NavLink} ${css.active}` : css.NavLink;
+        return isActive ? `${css.navLink} ${css.navLinkActive}` : css.navLink;
     };
 
     return (
-        <div>
+        <div className={css.navContainer}>
             <nav className={css.nav}>
                 <NavLink to="/" className={buildLinkClass}>Home</NavLink>
                 <NavLink to="/movies" className={buildLinkClass}>Movies</NavLink>
             </nav>
         </div>
+    );
+};
 
-    )
-}
-
-export default Navigation
+export default Navigation;
 

@@ -13,25 +13,39 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+
 a {
   font-weight: 500;
-  color: #646cff;
+  /* color: #646cff; */
   text-decoration: inherit;
 }
-a:hover {
+
+/* a:hover {
   color: #535bf2;
-}
+} */
 
 body {
   margin: 0;
-  display: flex;
+  /* display: flex; */
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+
+  background-image: url('https://img.freepik.com/free-photo/top-view-popcorn-frame-with-copy-space_23-2148553265.jpg?t=st=1723750317~exp=1723753917~hmac=2fcdd7241afb35216b0a0f644bd263ab5be61df802f7b85fde51d6ebf02ae330&w=1060');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+
 }
 
 h1 {
-  font-size: 3.2em;
+  font-size: 36px;
   line-height: 1.1;
 }
 
@@ -46,9 +60,11 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
-button:hover {
+
+/* button:hover {
   border-color: #646cff;
-}
+} */
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
@@ -59,9 +75,11 @@ button:focus-visible {
     color: #213547;
     background-color: #ffffff;
   }
-  a:hover {
+
+  /* a:hover {
     color: #747bff;
-  }
+  } */
+
   button {
     background-color: #f9f9f9;
   }

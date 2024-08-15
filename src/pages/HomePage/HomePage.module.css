@@ -1,10 +1,9 @@
-.container {
+.homeContainer {
     padding: 20px;
 }
 
-.heading {
-    font-size: 32px;
+.homeHeading {
+    font-size: 36px;
     color: #333;
-    text-align: center;
     margin-bottom: 20px;
 }
