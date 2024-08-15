@@ -1,7 +1,7 @@
 
 import { useEffect, useState } from 'react';
 import MovieList from '../../components/MovieList/MovieList';
-import { FetchTrendMovieList } from '../../components/movieList-api';
+import { FetchTrendMovieList } from '../../components/movie-Api';
 import css from './HomePage.module.css'
 
 
