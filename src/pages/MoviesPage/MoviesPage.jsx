@@ -6,11 +6,10 @@ import css from './MoviesPage.module.css'
 
 const MoviesPage = () => {
     const [searchParams, setSearchParams] = useSearchParams();
-    const [query, setQuery] = useState(searchParams.get("query") || ""); // Инициализация состояния на основе параметра в URL
+    const [query, setQuery] = useState(searchParams.get("query") || "");
     const [movies, setMovies] = useState([]);
 
     useEffect(() => {
-        // Выполняем поиск только если есть значение в query
         if (query) {
             const fetchMovies = async () => {
                 const data = await FetchSearchMovies(query);
@@ -22,7 +21,7 @@ const MoviesPage = () => {
 
     const handleSearch = async (event) => {
         event.preventDefault();
-        setSearchParams({ query }); // Обновляем параметр в URL
+        setSearchParams({ query });
         const data = await FetchSearchMovies(query);
         setMovies(data.results);
     };
