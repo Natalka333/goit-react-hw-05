@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams } from "react-router-dom";
+import { toast, Toaster } from 'react-hot-toast';
 
 import { FetchSearchMovies } from '../../components/movie-Api';
 
 import MovieList from '../../components/MovieList/MovieList';
+import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
+import Loader from '../../components/Loader/Loader';
 
 import css from './MoviesPage.module.css'
 
@@ -11,26 +14,52 @@ const MoviesPage = () => {
     const [searchParams, setSearchParams] = useSearchParams();
     const [query, setQuery] = useState(searchParams.get("query") || "");
     const [movies, setMovies] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(false);
+    const [isEmpty, setIsEmpty] = useState(false);
 
     useEffect(() => {
-        if (query) {
-            const fetchMovies = async () => {
-                const data = await FetchSearchMovies(query);
-                setMovies(data.results);
-            };
-            fetchMovies();
+        if (!query) {
+            return
         }
+
+        const fetchMovies = async () => {
+            setLoading(true);
+            setError(null);
+            try {
+                const data = await FetchSearchMovies(query);
+                if (!query.length) {
+                    return setIsEmpty(true);
+                }
+                setMovies(data.results);
+            } catch (error) {
+                setError(error);
+            } finally {
+                setLoading(false)
+            }
+
+        };
+        fetchMovies();
+
     }, [query]);
 
     const handleSearch = async (event) => {
         event.preventDefault();
         setSearchParams({ query });
         const data = await FetchSearchMovies(query);
+        if (!query.trim()) {
+            // return alert('Please enter search term!')
+            return toast.error("Please enter search term!");
+        }
         setMovies(data.results);
+        setIsEmpty(false);
+        setError(null);
+        setQuery('')
     };
 
     const handleChange = (event) => {
         setQuery(event.target.value);
+        console.log(event.target.value)
     };
 
     return (
@@ -41,59 +70,23 @@ const MoviesPage = () => {
                     type="text"
                     value={query}
                     onChange={handleChange}
+                    autoFocus
+                    required
                     className={css.moviesInput}
                 />
                 <button type="submit" className={css.moviesButton}>Search</button>
             </form>
             <MovieList trendMovies={movies} />
+            {loading && <Loader />}
+            {/* {!query.length && (<ErrorMessage>Sorry.There are no movies...😒</ErrorMessage>)} */}
+            {/* {!loading && !query.length && (<ErrorMessage>Let`s begin search!</ErrorMessage >)} */}
+            {error && <ErrorMessage>Whoops, something went wrong! Please try reloading this page!</ErrorMessage>}
+            <Toaster position="top-right" reverseOrder={false} />
         </div>
     );
 };
 
 export default MoviesPage;
 
-// const MoviesPage = () => {
-//     const [searchParams, setSearchParams] = useSearchParams();
-//     const [query, setQuery] = useState(searchParams.get("query") || "");
-//     const [movies, setMovies] = useState([]);
 
-//     useEffect(() => {
-//         if (query) {
-//             const fetchMovies = async () => {
-//                 const data = await FetchSearchMovies(query);
-//                 setMovies(data.results);
-//             };
-//             fetchMovies();
-//         }
-//     }, [query]);
-
-//     const handleSearch = async (event) => {
-//         event.preventDefault();
-//         setSearchParams({ query });
-//         const data = await FetchSearchMovies(query);
-//         setMovies(data.results);
-//     };
-
-//     const handleChange = (event) => {
-//         setQuery(event.target.value);
-//     };
-
-//     return (
-//         <div>
-//             <h1>Search Movies</h1>
-//             <form onSubmit={handleSearch} className={css.form}>
-//                 <input
-//                     type="text"
-//                     value={query}
-//                     onChange={handleChange}
-//                     className={css.input}
-//                 />
-//                 <button type="submit" className={css.button}>Search</button>
-//             </form>
-//             <MovieList trendMovies={movies} />
-//         </div>
-//     );
-// };
-
-// export default MoviesPage;
 

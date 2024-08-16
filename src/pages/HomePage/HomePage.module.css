@@ -3,7 +3,12 @@
 }
 
 .homeHeading {
-    font-size: 36px;
+    font-size: 48px;
     color: #333;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-decoration: underline;
+
 }

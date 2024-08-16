@@ -18,7 +18,10 @@ const App = () => {
 
   return (
     <div className={css.container}>
-      <Navigation />
+      <header>
+        <Navigation />
+      </header>
+
       <main>
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -30,10 +33,6 @@ const App = () => {
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>
-
-      {/* {loading && <Loader />}
-      {!loading && !trendMovies.length && (<ErrorMessage>Let`s begin search!</ErrorMessage>)} */}
-      {/* {trendMovies.length > 0 && <MovieList trendMovies={trendMovies} />} */}
     </div >
   )
 
@@ -41,8 +40,4 @@ const App = () => {
 export default App
 
 
-//     .container {
-//     max - width: 960px;
-//     margin: 0 auto;
-//     padding: 0 16px;
-// }
+
