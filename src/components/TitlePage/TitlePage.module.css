@@ -1,9 +1,5 @@
-.homeContainer {
-    padding: 20px;
-}
-
 .homeHeading {
-    font-size: 48px;
+    font-size: 42px;
     color: #333;
     margin-bottom: 40px;
     display: flex;

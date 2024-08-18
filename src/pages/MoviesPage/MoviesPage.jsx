@@ -9,6 +9,7 @@ import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 import Loader from '../../components/Loader/Loader';
 
 import css from './MoviesPage.module.css'
+import TitlePage from '../../components/TitlePage/TitlePage';
 
 const MoviesPage = () => {
     const [searchParams, setSearchParams] = useSearchParams();
@@ -48,7 +49,6 @@ const MoviesPage = () => {
         setSearchParams({ query });
         const data = await FetchSearchMovies(query);
         if (!query.trim()) {
-            // return alert('Please enter search term!')
             return toast.error("Please enter search term!");
         }
         setMovies(data.results);
@@ -59,13 +59,12 @@ const MoviesPage = () => {
 
     const handleChange = (event) => {
         setQuery(event.target.value);
-        console.log(event.target.value)
     };
 
     return (
         <div>
-            <h1 className={css.searchTitle}>Search Movies</h1>
-            <form onSubmit={handleSearch} className={css.moviesForm}>
+            <TitlePage text="Search Movies" />
+            {/* <form onSubmit={handleSearch} className={css.moviesForm}>
                 <input
                     type="text"
                     value={query}
@@ -75,7 +74,7 @@ const MoviesPage = () => {
                     className={css.moviesInput}
                 />
                 <button type="submit" className={css.moviesButton}>Search</button>
-            </form>
+            </form> */}
             <MovieList trendMovies={movies} />
             {loading && <Loader />}
             {/* {!query.length && (<ErrorMessage>Sorry.There are no movies...😒</ErrorMessage>)} */}

@@ -1,67 +1,58 @@
-import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useLocation, useParams } from 'react-router-dom';
+import { useEffect, useRef, useState } from 'react';
+
 import { FetchMovieDetails } from '../../components/movie-Api';
+import Loader from '../../components/Loader/Loader';
+import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
+import InfoMovie from '../../components/InfoMovie/InfoMovie';
+
 import css from './MovieDetailsPage.module.css';
+import GoBackBtn from '../../components/GoBackBtn/GoBackBtn';
+import AdditionalInfo from '../../components/AdditionalInfo/AdditionalInfo';
 
 const MovieDetailsPage = () => {
     const { movieId } = useParams();
     const [movieDetails, setMovieDetails] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+
     const location = useLocation();
-    const backHome = location.state ?? '/';
+    const backHome = useRef(location?.state ?? '/');
 
     useEffect(() => {
         const FetchDetails = async () => {
-            const data = await FetchMovieDetails(movieId);
-            setMovieDetails(data);
+            setLoading(true);
+            setError(null);
+            try {
+                const data = await FetchMovieDetails(movieId);
+                setMovieDetails(data);
+            } catch (error) {
+                setError(error);
+            } finally {
+                setLoading(false);
+            }
         };
         FetchDetails();
     }, [movieId]);
 
-    if (!movieDetails) {
-        return <p>Loading...</p>;
-    }
-
     return (
         <div className={css.detailsContainer}>
-            <Link to={backHome} className={css.backHome}>Go back</Link>
-            {movieDetails !== null && (
-                <div className={css.detailsTopSection}>
-                    <img
-                        src={`https://image.tmdb.org/t/p/w500${movieDetails.poster_path}`}
-                        alt={movieDetails.title}
-                        className={css.detailsImg}
-                    />
-                    <div className={css.detailsTextContainer}>
-                        <h2 className={css.detailsHeading}>{movieDetails.title}</h2>
-                        <p className={css.detailsParagraph}>User Score: {movieDetails.vote_average * 10}%</p>
-                        <h3 className={css.detailsSubheading}>Overview</h3>
-                        <p className={css.detailsParagraph}>{movieDetails.overview}</p>
-                        <h3 className={css.detailsSubheading}>Genres</h3>
-                        {movieDetails.genres && (
-                            <ul className={css.detailsGenreList}>
-                                {movieDetails.genres.map(genre => (
-                                    <li key={genre.id} className={css.detailsGenreItem}>
-                                        {genre.name}
-                                    </li>
-                                ))}
-                            </ul>
-                        )}
-                    </div>
-                </div>
-            )}
+            <GoBackBtn path={backHome.current}>🚶‍♀️Go back</GoBackBtn>
+            {movieDetails && (
+                <InfoMovie {...movieDetails} />)}
+            <AdditionalInfo />
 
-            <div className={css.detailsAdditionalInfo}>
-                <p className={css.detailsParagraph}>Additional information</p>
-                <Link to="cast" className={css.detailsLink}>Cast</Link>
-                <Link to="reviews" className={css.detailsLink}>Reviews</Link>
-            </div>
-
-            <Outlet />
+            {loading && <Loader />}
+            {error && <ErrorMessage>Whoops, something went wrong! Please try reloading this page!</ErrorMessage>}
         </div>
     );
 };
 
 export default MovieDetailsPage;
+
+
+
+
 
 
 

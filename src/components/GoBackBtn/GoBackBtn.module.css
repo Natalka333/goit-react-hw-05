@@ -1,0 +1,9 @@
+.backHome {
+    text-decoration: none;
+    color: rgb(184, 17, 250);
+}
+
+.backHome:hover {
+    text-decoration: underline;
+    color: #ff0066;
+}
