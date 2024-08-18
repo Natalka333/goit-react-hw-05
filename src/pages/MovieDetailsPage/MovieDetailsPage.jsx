@@ -4,11 +4,12 @@ import { useEffect, useRef, useState } from 'react';
 import { FetchMovieDetails } from '../../components/movie-Api';
 import Loader from '../../components/Loader/Loader';
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
-import InfoMovie from '../../components/InfoMovie/InfoMovie';
+
 
 import css from './MovieDetailsPage.module.css';
 import GoBackBtn from '../../components/GoBackBtn/GoBackBtn';
 import AdditionalInfo from '../../components/AdditionalInfo/AdditionalInfo';
+import MovieInfo from '../../components/MovieInfo/MovieInfo';
 
 const MovieDetailsPage = () => {
     const { movieId } = useParams();
@@ -39,7 +40,7 @@ const MovieDetailsPage = () => {
         <div className={css.detailsContainer}>
             <GoBackBtn path={backHome.current}>🚶‍♀️Go back</GoBackBtn>
             {movieDetails && (
-                <InfoMovie {...movieDetails} />)}
+                <MovieInfo {...movieDetails} />)}
             <AdditionalInfo />
 
             {loading && <Loader />}

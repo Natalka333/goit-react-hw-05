@@ -1,6 +1,6 @@
-import css from './InfoMovie.module.css'
+import css from './MovieInfo.module.css'
 
-const InfoMovie = ({ poster_path, title, vote_average, overview, genres }) => {
+const MovieInfo = ({ poster_path, title, vote_average, overview, genres }) => {
     return (
         <div className={css.detailsTopSection}>
             <img
@@ -28,7 +28,7 @@ const InfoMovie = ({ poster_path, title, vote_average, overview, genres }) => {
     );
 };
 
-export default InfoMovie;
+export default MovieInfo;
 
 
 
