@@ -1,4 +1,4 @@
-import css from './InfoMovie.module.css';
+import css from './InfoMovie.module.css'
 
 const InfoMovie = ({ poster_path, title, vote_average, overview, genres }) => {
     return (
