@@ -1,5 +1,5 @@
 import { useState } from "react"
-
+import css from './SearchForm.module.css';
 
 const SearchForm = ({ onSubmit }) => {
     const [query, setQuery] = useState('');
@@ -13,10 +13,8 @@ const SearchForm = ({ onSubmit }) => {
         event.preventDefault();
         onSubmit(query);
         setQuery('');
+
     }
-
-
-
 
     return (
         <form onSubmit={handleSubmit} className={css.moviesForm}>
