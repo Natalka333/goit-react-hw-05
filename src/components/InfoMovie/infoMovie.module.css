@@ -43,3 +43,15 @@
     padding: 0;
     margin-bottom: 20px;
 }
+
+.detailsGenreItem {
+    color: black;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+
+.detailsLink:hover {
+    text-decoration: underline;
+    color: #ff0066;
+}

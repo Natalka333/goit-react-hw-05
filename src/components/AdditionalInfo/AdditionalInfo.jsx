@@ -1,5 +1,5 @@
 import { Link, Outlet } from 'react-router-dom';
-import css from './AdditionalInfo.module.css'; // Подключаем стили
+import css from './AdditionalInfo.module.css';
 
 const AdditionalInfo = () => {
     return (

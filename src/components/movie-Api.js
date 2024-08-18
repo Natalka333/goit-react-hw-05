@@ -1,5 +1,5 @@
 import axios from "axios";
-// 36c055354a096d6b8b4c719bc2b47aa7
+
 const BASE_URL = 'https://api.themoviedb.org/3';
 const options = {
     headers: {
