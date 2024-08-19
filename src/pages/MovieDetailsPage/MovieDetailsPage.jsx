@@ -21,9 +21,10 @@ const MovieDetailsPage = () => {
     const backHome = useRef(location?.state ?? '/');
 
     useEffect(() => {
+        setLoading(true);
+        setError(null);
+
         const FetchDetails = async () => {
-            setLoading(true);
-            setError(null);
             try {
                 const data = await FetchMovieDetails(movieId);
                 setMovieDetails(data);
