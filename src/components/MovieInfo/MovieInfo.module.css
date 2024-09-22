@@ -55,3 +55,31 @@
     text-decoration: underline;
     color: #ff0066;
 }
+
+
+@media (max-width: 768px) {
+    .detailsTopSection {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .detailsImg {
+        max-width: 80%;
+        height: auto;
+    }
+
+    .detailsHeading {
+        font-size: 22px;
+        text-align: center;
+    }
+
+    .detailsParagraph,
+    .detailsSubheading {
+        text-align: center;
+    }
+
+    .detailsGenreList {
+        justify-content: center;
+    }
+}

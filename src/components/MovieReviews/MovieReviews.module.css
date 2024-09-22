@@ -1,14 +1,17 @@
 .reviewsList {
     padding: 0;
     list-style: none;
-    margin: 0;
+    margin: 0 auto;
+    max-width: 800px;
 }
 
 .reviewItem {
     margin-bottom: 20px;
-    padding: 10px;
+    padding: 15px;
     border: 1px solid #ddd;
     border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .reviewAuthor {
@@ -22,4 +25,22 @@
     font-size: 14px;
     line-height: 1.6;
     color: #555;
+}
+
+@media (max-width: 768px) {
+    .reviewsList {
+        padding: 0 10px;
+    }
+
+    .reviewItem {
+        padding: 10px;
+    }
+
+    .reviewAuthor {
+        font-size: 14px;
+    }
+
+    .reviewContent {
+        font-size: 12px;
+    }
 }
