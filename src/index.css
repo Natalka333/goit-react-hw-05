@@ -32,15 +32,10 @@ a {
 
 body {
   margin: 0;
-  /* display: flex; */
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
 
   background-image: url('https://img.freepik.com/free-photo/top-view-popcorn-frame-with-copy-space_23-2148553265.jpg?t=st=1723750317~exp=1723753917~hmac=2fcdd7241afb35216b0a0f644bd263ab5be61df802f7b85fde51d6ebf02ae330&w=1060');
   background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
+  background-attachment: fixed;
   z-index: 5;
 
 }
@@ -62,9 +57,7 @@ button {
   transition: border-color 0.25s;
 }
 
-/* button:hover {
-  border-color: #646cff;
-} */
+
 
 button:focus,
 button:focus-visible {
@@ -77,9 +70,7 @@ button:focus-visible {
     background-color: #ffffff;
   }
 
-  /* a:hover {
-    color: #747bff;
-  } */
+
 
   button {
     background-color: #f9f9f9;
